@@ -1,0 +1,17 @@
+﻿@page "/map"
+@inject IConfiguration config
+
+<h3>MapPage</h3>
+<Map MapsKey="@MapsKey"></Map>
+
+
+
+@code {
+    private string? MapsKey { get; set; }
+
+    protected override void OnInitialized()
+    {
+        MapsKey = config.GetValue<string>("MapKey") ?? throw new Exception("Map key is not in the secrets");
+    }
+
+}
